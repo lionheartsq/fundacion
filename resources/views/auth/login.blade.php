@@ -17,13 +17,13 @@
             <input type="email" value="{{old('email')}}" name="email" id="email" class="form-control" placeholder="Correo">
               {!!$errors->first('email','<span class="invalid-feedback">:message</span>')!!}
             </div>
-
+            <!--
             <div class="form-group mb-4{{$errors->has('password' ? 'is-invalid' : '')}}">
               <span class="input-group-addon"><i class="icon-lock"></i></span>
               <input type="password" name="password" id="password" class="form-control" placeholder="Password">
               {!!$errors->first('password','<span class="invalid-feedback">:message</span>')!!}
             </div>
-
+            -->
             <div class="row">
               <div class="col-6">
                 <button type="submit" class="btn btn-primary px-4">Acceder</button>

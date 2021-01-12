@@ -15,8 +15,8 @@ class LoginController extends Controller
 
     public function login(Request $request){
         $this->validate($request,[
-            'email'=>'required|string',
-            'password'=>'required|string'
+            'email'=>'required|string'//,
+            //'password'=>'required|string'
         ]);
 
         Log::info('Showing user profile for user: '.$request);

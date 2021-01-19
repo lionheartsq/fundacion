@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Usuario
- * 
+ *
  * @property int $idusuarios
  * @property string $documento
  * @property string|null $expedicion
@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $autorizacion
  * @property int $idroles
  * @property string $estado
- * 
+ *
  * @property Role $role
  * @property Collection|Agenda[] $agendas
  * @property Collection|Asociacion[] $asociacions
@@ -50,7 +50,8 @@ class Usuario extends Model
 		'email',
 		'autorizacion',
 		'idroles',
-		'estado'
+		'estado',
+        'password'
 	];
 
 	public function role()

@@ -13,21 +13,25 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
+    public function username()
+    {
+        return 'documento';
+    }
+
     public function login(Request $request){
         $this->validate($request,[
-            'email'=>'required|string'//,
-            //'password'=>'required|string'
+            'documento'=>'required|string',
+            'password'=>'required|string'
         ]);
 
         Log::info('Showing user profile for user: '.$request);
 
-        //if(Auth::attempt(['email' => $request->email, 'password' => $request->password, 'estado'=>'A'])){
-        if(Auth::attempt(['email' => $request->email, 'estado'=>'A'])){
+        if(Auth::attempt(['documento' => $request->documento, 'password' => $request->password, 'estado'=>'A'])){
             return redirect()->route('principal');
         }
         else{
-            return back()->withErrors(['email'=>trans('auth.failed')])
-            ->withInput(request(['email']));
+            return back()->withErrors(['documento'=>trans('auth.failed')])
+            ->withInput(request(['documento']));
         }
     }
 

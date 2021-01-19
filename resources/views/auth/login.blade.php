@@ -12,18 +12,18 @@
             <div><img src="img/HACEM.png" alt="" style="width:100%"></div><br>
             <!--<p class="text-muted">Control de acceso al sistema</p>-->
 
-            <div class="form-group mb-3{{$errors->has('email' ? 'is-invalid' : '')}}">
+            <div class="form-group mb-3{{$errors->has('documento' ? 'is-invalid' : '')}}">
               <span class="input-group-addon"><i class="icon-user"></i></span>
-            <input type="email" value="{{old('email')}}" name="email" id="email" class="form-control" placeholder="Correo">
-              {!!$errors->first('email','<span class="invalid-feedback">:message</span>')!!}
+            <input type="text" value="{{old('documento')}}" name="documento" id="documento" class="form-control" placeholder="Correo">
+              {!!$errors->first('documento','<span class="invalid-feedback">:message</span>')!!}
             </div>
-            <!--
+
             <div class="form-group mb-4{{$errors->has('password' ? 'is-invalid' : '')}}">
               <span class="input-group-addon"><i class="icon-lock"></i></span>
               <input type="password" name="password" id="password" class="form-control" placeholder="Password">
               {!!$errors->first('password','<span class="invalid-feedback">:message</span>')!!}
             </div>
-            -->
+            <!---->
             <div class="row">
               <div class="col-6">
                 <button type="submit" class="btn btn-primary px-4">Acceder</button>

@@ -1,28 +1,12 @@
 <?php
 
-/**
- * Created by Reliese Model.
- */
-
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class Roca
- * 
- * @property int $idroca
- * @property int $valorentrada
- * @property int $valorsalida
- * @property int $acumulado
- * @property int $idasientos
- * 
- * @property Asiento $asiento
- *
- * @package App\Models
- */
 class Roca extends Model
 {
+    //
 	protected $table = 'roca';
 	protected $primaryKey = 'idroca';
 	public $timestamps = false;
@@ -41,8 +25,8 @@ class Roca extends Model
 		'idasientos'
 	];
 
-	public function asiento()
+	public function asientos()
 	{
-		return $this->belongsTo(Asiento::class, 'idasientos');
+		return $this->belongsTo(Asientos::class, 'idasientos');
 	}
 }

@@ -51,7 +51,7 @@ class Residentes extends Model
 		return $this->hasMany(Agenda::class, 'idresidentes');
 	}
 
-	public function asociacions()
+	public function asociaciones()
 	{
 		return $this->hasMany(Asociacion::class, 'idresidentes');
 	}

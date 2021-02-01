@@ -1,27 +1,12 @@
 <?php
 
-/**
- * Created by Reliese Model.
- */
+namespace App;
 
-namespace App\Models;
-
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class Historiali
- * 
- * @property int $idhistoriali
- * @property Carbon $fechaingreso
- * @property Carbon $fecharetiro
- * @property string $motivo
- * @property int $idresidentes
- *
- * @package App\Models
- */
 class Historiali extends Model
 {
+    //
 	protected $table = 'historiali';
 	protected $primaryKey = 'idhistoriali';
 	public $timestamps = false;

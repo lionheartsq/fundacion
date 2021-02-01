@@ -39,4 +39,16 @@ Route::group(['middleware' => ['guest']], function () {
             return view('home');
         })->name('pruebas');
 //---------------------------------------------------------------------------//
+
+Route::group(['middleware' => ['Superadministrador']], function () {
+
+    Route::get("/residentes", "ResidentesController@index");
+    Route::post("/residentes/store", "ResidentesController@store");
+    Route::put("/residentes/update", "ResidentesController@update");
+    Route::put("/residentes/deactivate", "ResidentesController@deactivate");
+    Route::put("/residentes/activate", "ResidentesController@activate");
+
     });
+
+
+});

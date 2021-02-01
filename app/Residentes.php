@@ -1,59 +1,13 @@
 <?php
 
-/**
- * Created by Reliese Model.
- */
+namespace App;
 
-namespace App\Models;
-
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class Residente
- * 
- * @property int $idresidentes
- * @property string $documentor
- * @property string|null $expedicionr
- * @property Carbon|null $fechanacimiento
- * @property string|null $nombresr
- * @property string|null $apellidosr
- * @property string|null $telefono
- * @property string|null $celular
- * @property string|null $profesion
- * @property string|null $email
- * @property string $estado
- * @property string|null $direccionf
- * @property string|null $ciudad
- * @property string|null $estudios
- * @property string|null $estadocivil
- * @property string|null $conyuge
- * @property string|null $tipodocumento
- * @property string|null $eps
- * @property string|null $padre
- * @property string|null $madre
- * @property string|null $nomfund
- * @property int $codigo
- * @property Carbon $fechacodigo
- * 
- * @property Collection|Agenda[] $agendas
- * @property Collection|Asociacion[] $asociacions
- * @property Collection|Cobroalmuerzo[] $cobroalmuerzos
- * @property Collection|Familia[] $familias
- * @property Collection|Historiaclinica[] $historiaclinicas
- * @property Collection|Permiso[] $permisos
- * @property Collection|Seguimiento[] $seguimientos
- * @property Collection|Sugerido[] $sugeridos
- * @property Collection|Terapiac[] $terapiacs
- * @property Collection|Terapiae[] $terapiaes
- * @property Collection|Ventum[] $venta
- *
- * @package App\Models
- */
-class Residente extends Model
+class Residentes extends Model
 {
-	protected $table = 'residentes';
+    //
+    protected $table = 'residentes';
 	protected $primaryKey = 'idresidentes';
 	public $timestamps = false;
 
@@ -83,7 +37,8 @@ class Residente extends Model
 		'estadocivil',
 		'conyuge',
 		'tipodocumento',
-		'eps',
+        'eps',
+        'tiposangre',
 		'padre',
 		'madre',
 		'nomfund',

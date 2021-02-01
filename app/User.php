@@ -14,10 +14,6 @@ class User extends Authenticatable
 	protected $primaryKey = 'idusuarios';
 	public $timestamps = false;
 
-	protected $casts = [
-		'idroles' => 'int'
-	];
-
 	protected $fillable = [
 		'documento',
 		'expedicion',
@@ -31,10 +27,9 @@ class User extends Authenticatable
         'password'
 	];
 
-	public function role()
-	{
-		return $this->belongsTo(Role::class, 'idroles');
-	}
+    public function roles() {
+        return $this->hasMany(Roles::class, 'idroles');
+    }
 
 	public function agendas()
 	{

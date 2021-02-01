@@ -5,20 +5,23 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Sistema Gestión Fundación Jesús es mi roca">
-    <meta name="author" content="softclass.co">
-    <meta name="keyword" content="Sistema Gestión Fundación Jesús es mi roca">
+    <meta name="description" content="Calculador de costos">
+    <meta name="author" content="SENA CIDM">
+    <meta name="keyword" content="Sistema Calculador de costos">
     <link rel="shortcut icon" href="img/favicon.png">
-    <title>Sistema Ventas - IncanatoIT</title>
+    <title>FUNDACIÓN JESÚS ES MI ROCA</title>
     <!-- Icons -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/simple-line-icons.min.css" rel="stylesheet">
-    <!-- Main styles for this application -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+
 </head>
 
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
-    <header class="app-header navbar">
+
+    <div id="app"><!-- /Apertura div app que permite usar vue -->
+
+        <header class="app-header navbar">
         <button class="navbar-toggler mobile-sidebar-toggler d-lg-none mr-auto" type="button">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -56,115 +59,66 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    <span class="d-md-down-none">admin </span>
+                    <!--<img src="img/avatars/{{Auth::user()->idusuarios}}.jpg" class="img-avatar" alt="{{Auth::user()->email}}">-->
+                    <span class="d-md-down-none">{{Auth::user()->nombres}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <div class="dropdown-header text-center">
                         <strong>Cuenta</strong>
                     </div>
-                    <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Perfil</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Cerrar sesión</a>
-                </div>
+                <a class="dropdown-item" href="{{route('logout')}}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="fa fa-lock"></i> Cerrar sesión</a>
+
+                <form id="logout-form" action="{{route('logout')}}" method="post" style="display: none;">
+                {{csrf_field()}}
+                </form>
+
+            </div>
             </li>
+            <li><p>&nbsp;&nbsp;&nbsp;</p></li>
         </ul>
     </header>
 
     <div class="app-body">
-        <div class="sidebar">
-            <nav class="sidebar-nav">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="main.html"><i class="icon-speedometer"></i> Escritorio</a>
-                    </li>
-                    <li class="nav-title">
-                        Mantenimiento
-                    </li>
-                    <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-bag"></i> Almacén</a>
-                        <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="icon-bag"></i> Categorías</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="icon-bag"></i> Artículos</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-wallet"></i> Compras</a>
-                        <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a class="nav-link" href="i#"><i class="icon-wallet"></i> Ingresos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="icon-notebook"></i> Proveedores</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-basket"></i> Ventas</a>
-                        <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a class="nav-link" href="i#"><i class="icon-basket-loaded"></i> Ventas</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="icon-notebook"></i> Clientes</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-people"></i> Acceso</a>
-                        <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a class="nav-link" href="i#"><i class="icon-user"></i> Usuarios</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="icon-user-following"></i> Roles</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item nav-dropdown">
-                        <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-pie-chart"></i> Reportes</a>
-                        <ul class="nav-dropdown-items">
-                            <li class="nav-item">
-                                <a class="nav-link" href="i#"><i class="icon-chart"></i> Reporte Ingresos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="icon-chart"></i> Reporte Ventas</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="main.html"><i class="icon-book-open"></i> Ayuda <span class="badge badge-danger">PDF</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="main.html"><i class="icon-info"></i> Acerca de...<span class="badge badge-info">IT</span></a>
-                    </li>
-                </ul>
-            </nav>
-            <button class="sidebar-minimizer brand-minimizer" type="button"></button>
-        </div>
+
+
+        @foreach (Auth::user()->roles as $rol)
+
+            @if (($rol->idroles)==1)
+                @include('contenido.sidebarsa')
+            @elseif (($rol->idroles)==2)
+                @include('contenido.sidebarem')
+            @else
+                @include('contenido.sidebarvacio')
+            @endif
+
+        @endforeach
+       <!--
+       @include('contenido.sidebarsa')
+       -->
 
         <!-- Contenido Principal -->
         @yield('contenido')
         <!-- /Fin del contenido principal -->
     </div>
 
+    </div><!-- /Cierre div app que permite usar vue -->
+
     <footer class="app-footer">
-        <span><a href="http://www.softclass.co/">softclass</a> &copy; 2017</span>
-        <span class="ml-auto">Desarrollado por <a href="http://www.softclass.co/">softclass</a></span>
+        <span><a href="#">JESUS ES MI ROCA</a> &copy; 2020</span>
+        <span class="ml-auto">Desarrollado por <a href="#">SOFTCLASS</a></span>
     </footer>
 
     <!-- Bootstrap and necessary plugins -->
-    <script src="js/jquery.min.js"></script>
+    <script src="js/app.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/pace.min.js"></script>
-    <!-- Plugins and scripts required by all views -->
     <script src="js/Chart.min.js"></script>
-    <!-- GenesisUI main scripts -->
+    <script src="js/pace.min.js"></script>
     <script src="js/template.js"></script>
+    <script src="js/sweetalert2.all.js"></script>
+
 </body>
 
 </html>

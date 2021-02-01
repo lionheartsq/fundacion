@@ -14,7 +14,7 @@
 
             <div class="form-group mb-3{{$errors->has('documento' ? 'is-invalid' : '')}}">
               <span class="input-group-addon"><i class="icon-user"></i></span>
-            <input type="text" value="{{old('documento')}}" name="documento" id="documento" class="form-control" placeholder="Correo">
+            <input type="text" value="{{old('documento')}}" name="documento" id="documento" class="form-control" placeholder="Documento">
               {!!$errors->first('documento','<span class="invalid-feedback">:message</span>')!!}
             </div>
 

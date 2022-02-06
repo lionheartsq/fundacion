@@ -69,6 +69,8 @@ Vue.use(VueCurrencyFilter,[
 Vue.component('example', require('./components/ExampleComponent.vue').default);
 Vue.component('bienvenida', require('./components/Bienvenida.vue').default);
 Vue.component('residentes', require('./components/Residentes.vue').default);
+Vue.component('usuarios', require('./components/Usuarios.vue').default);
+Vue.component('acudientes', require('./components/Acudientes.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

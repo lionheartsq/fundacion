@@ -3,14 +3,14 @@
                 <!-- Breadcrumb -->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Home</li>
-                    <li class="breadcrumb-item active">Residentes</li>
+                    <li class="breadcrumb-item active">Usuarios</li>
                 </ol>
                 <div class="container-fluid">
                     <!-- Ejemplo de tabla Listado -->
 
                     <div class="card">
                         <div class="card-header">
-                            <i class="fa fa-align-justify"></i> Residente &nbsp;
+                            <i class="fa fa-align-justify"></i> Usuario &nbsp;
                             <button type="button" @click="abrirModal('residente','crear')" class="btn btn-secondary">
                                 <i class="icon-plus"></i>&nbsp;Nuevo
                             </button>
@@ -23,6 +23,7 @@
                                         <option value="documentor">Documento</option>
                                         <option value="nombresr">Nombre</option>
                                         <option value="apellidosr">Apellido</option>
+                                        <option value="apellidosr">Rol</option>
                                         <option value="estado">Estado</option>
                                         </select>
                                         <input type="text" v-model="buscar" @keyup.enter="listarResidente(1,buscar,criterio)" class="form-control" placeholder="Texto a buscar">
@@ -36,9 +37,10 @@
                                     <tr>
                                         <th>Opciones</th>
                                         <th>Documento</th>
-                                        <th>Nombre residente</th>
-                                        <th>Nombre acudiente</th>
+                                        <th>Nombre usuario</th>
+                                        <th>Email</th>
                                         <th>Teléfono</th>
+                                        <th>Rol</th>
                                         <th>Estado</th>
                                     </tr>
                                 </thead>
@@ -71,10 +73,36 @@
                                         </template>
 
                                         </td>
-                                        <td v-text="residente.documentor"></td>
-                                        <td v-text="residente.residente"></td>
+                                        <td v-text="residente.documento"></td>
                                         <td v-text="residente.acudiente"></td>
+                                        <td v-text="residente.email"></td>
                                         <td v-text="residente.telefono"></td>
+                                        <td>
+                                            <div v-if="residente.rol == 'Bda'">
+                                            Gestor base de datos
+                                            </div>
+                                            <div v-if="residente.rol == 'Superadmin'">
+                                            Super Administrador
+                                            </div>
+                                            <div v-if="residente.rol == 'Administrador'">
+                                            Administrador
+                                            </div>
+                                            <div v-if="residente.rol == 'Psicologo'">
+                                            Psicólogo
+                                            </div>
+                                            <div v-if="residente.rol == 'Terapeuta general'">
+                                            Terapeuta general
+                                            </div>
+                                            <div v-if="residente.rol == 'Practicante'">
+                                            Practicante
+                                            </div>
+                                            <div v-if="residente.rol == 'Minutas'">
+                                            Minutas
+                                            </div>
+                                            <div v-if="residente.rol == 'Cajero'">
+                                            Cajero
+                                            </div>
+                                        </td>
                                         <td>
                                             <div v-if="residente.estado == 'A'">
                                             <span class="badge badge-success">Activo</span>
@@ -124,7 +152,7 @@
                                         <label class="col-md-3 form-control-label" for="text-input">Nombre</label>
                                         <div class="col-md-9">
                                             <input type="text" v-model="residente" class="form-control" placeholder="Nombre de residente">
-                                            <span class="help-block">(*) Ingrese el nombre del residente</span>
+                                            <span class="help-block">(*) Ingrese el nombre del usuario</span>
                                         </div>
                                     </div>
 
@@ -218,12 +246,12 @@
         methods : {
             listarResidente(page,buscar,criterio){
                 let me=this;
-                var url='/residentes?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
+                var url='/usuarios?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
                 // Make a request for a user with a given ID
                 axios.get(url).then(function (response) {
                     // handle success
                 var respuesta=response.data;
-                me.arrayResidentes=respuesta.residentes.data;
+                me.arrayResidentes=respuesta.usuarios.data;
                 me.pagination=respuesta.pagination;
                     //console.log(response);
                 })
@@ -246,8 +274,8 @@
                 }
 
                 let me=this;
-                axios.post('/residentes/store',{
-                    'residente': this.residente
+                axios.post('/usarios/store',{
+                    'usuario': this.usuario
                     //'estado': this.estado,
                     //'dato': this.dato
                 }).then(function (response) {
@@ -264,7 +292,7 @@
                 }
 
                 let me=this;
-                axios.put('/residentes/update',{
+                axios.put('/usuarios/update',{
                     'residente': this.residente,
                     'id': this.idResidente
                     //'estado': this.estado,
@@ -296,12 +324,12 @@
                 }).then((result) => {
                 if (result.value) {
                     let me=this;
-                    axios.put('/residentes/deactivate',{
+                    axios.put('/usuarios/deactivate',{
                         'id': id
                     }).then(function (response) {
-                    me.listarResidente(1,'','residente');
+                    me.listarResidente(1,'','usuarios');
                     swalWithBootstrapButtons.fire(
-                    'Residente desactivado!'
+                    'Usuario desactivado!'
                     )
                     }).catch(function (error) {
                         console.log(error);
@@ -333,12 +361,12 @@
                 }).then((result) => {
                 if (result.value) {
                     let me=this;
-                    axios.put('/residentes/activate',{
+                    axios.put('/usuarios/activate',{
                         'id': id
                     }).then(function (response) {
                     me.listarResidente(1,'','residente');
                     swalWithBootstrapButtons.fire(
-                    'Residente activado!'
+                    'Usuario activado!'
                     )
                     }).catch(function (error) {
                         console.log(error);
@@ -355,7 +383,7 @@
                 this.errorResidente=0;
                 this.errorMensaje=[];
 
-                if (!this.residente) this.errorMensaje.push("El nombre del residente no puede estar vacio");
+                if (!this.residente) this.errorMensaje.push("El nombre del usuario no puede estar vacio");
                 if (this.errorMensaje.length) this.errorResidente=1;
 
                 return this.errorResidente;
@@ -374,14 +402,14 @@
                         case 'crear':{
                             this.modal=1;
                             this.residente='';
-                            this.tituloModal='Crear nuevo residente';
+                            this.tituloModal='Crear nuevo usuario';
                             this.tipoAccion= 1;
                             break;
                         }
                         case 'actualizar':{
                             //console.log(data);
                             this.modal=1;
-                            this.tituloModal='Editar residente';
+                            this.tituloModal='Editar usuario';
                             this.tipoAccion= 2;
                             this.idResidente=data['id'];
                             this.residente=data['residente'];

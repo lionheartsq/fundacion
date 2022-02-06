@@ -30,6 +30,7 @@ Route::group(['middleware' => ['guest']], function () {
     Route::group(['middleware' => ['auth']], function () {
 
         Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
+        Route::post('/pass', 'Auth\LoginController@pass')->name('pass');
 
         Route::get('/principal', function () {
             return view('contenido/contenido');
@@ -47,6 +48,18 @@ Route::group(['middleware' => ['Superadministrador']], function () {
     Route::put("/residentes/update", "ResidentesController@update");
     Route::put("/residentes/deactivate", "ResidentesController@deactivate");
     Route::put("/residentes/activate", "ResidentesController@activate");
+
+    Route::get("/acudientes", "AcudientesController@index");
+    Route::post("/acudientes/store", "AcudientesController@store");
+    Route::put("/acudientes/update", "AcudientesController@update");
+    Route::put("/acudientes/deactivate", "AcudientesController@deactivate");
+    Route::put("/acudientes/activate", "AcudientesController@activate");
+
+    Route::get("/usuarios", "UsuariosController@index");
+    Route::post("/usuarios/store", "UsuariosController@store");
+    Route::put("/usuarios/update", "UsuariosController@update");
+    Route::put("/usuarios/deactivate", "UsuariosController@deactivate");
+    Route::put("/usuarios/activate", "UsuariosController@activate");
 
     });
 

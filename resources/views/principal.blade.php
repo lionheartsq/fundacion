@@ -38,43 +38,28 @@
             </li>
         </ul>
         <ul class="nav navbar-nav ml-auto">
-            <li class="nav-item d-md-down-none">
-                <a class="nav-link" href="#" data-toggle="dropdown">
-                    <i class="icon-bell"></i>
-                    <span class="badge badge-pill badge-danger">5</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <div class="dropdown-header text-center">
-                        <strong>Notificaciones</strong>
-                    </div>
-                    <a class="dropdown-item" href="#">
-                        <i class="fa fa-envelope-o"></i> Ingresos
-                        <span class="badge badge-success">3</span>
-                    </a>
-                    <a class="dropdown-item" href="#">
-                        <i class="fa fa-tasks"></i> Ventas
-                        <span class="badge badge-danger">2</span>
-                    </a>
-                </div>
-            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <!--<img src="img/avatars/{{Auth::user()->idusuarios}}.jpg" class="img-avatar" alt="{{Auth::user()->email}}">-->
+                    <img src="img/avatars/{{Auth::user()->idusuarios}}.jpg" class="img-avatar" alt="{{Auth::user()->email}}">
                     <span class="d-md-down-none">{{Auth::user()->nombres}}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <div class="dropdown-header text-center">
                         <strong>Cuenta</strong>
                     </div>
-                <a class="dropdown-item" href="{{route('logout')}}"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <i class="fa fa-lock"></i> Cerrar sesión</a>
 
-                <form id="logout-form" action="{{route('logout')}}" method="post" style="display: none;">
-                {{csrf_field()}}
-                </form>
+                    <a class="dropdown-item" href="#" data-id="1" data-toggle="modal" data-target="#myModal">
+                    <i class="fa fa-key"></i> Cambiar contraseña</a>
 
-            </div>
+                    <a class="dropdown-item" href="{{route('logout')}}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <i class="fa fa-lock"></i> Cerrar sesión</a>
+
+                    <form id="logout-form" action="{{route('logout')}}" method="post" style="display: none;">
+                    {{csrf_field()}}
+                    </form>
+
+                </div>
             </li>
             <li><p>&nbsp;&nbsp;&nbsp;</p></li>
         </ul>
@@ -104,6 +89,39 @@
     </div>
 
     </div><!-- /Cierre div app que permite usar vue -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form method="POST" action="{{ route('pass') }}">
+                    @csrf
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Cambiar contraseña</h4>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="form-group row">
+                        <label class="col-md-4 form-control-label" for="passnueva-input">Nueva clave</label>
+                        <div class="col-md-8">
+                            <input type="password" name="passnueva" id="passnueva" class="form-control" placeholder="Ingrese su nueva clave"/>
+                            <input type="hidden" name="idusuarios" id="idusuarios" value="{{Auth::user()->idusuarios}}"/>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <input type="submit" class="btn btn-primary" value="Guardar">
+                </div>
+            </form>
+            </div><!-- modal content -->
+        </div><!-- modal dialog -->
+    </div><!-- modal fade -->
+    <!-- Cierra Modal -->
 
     <footer class="app-footer">
         <span><a href="#">JESUS ES MI ROCA</a> &copy; 2020</span>

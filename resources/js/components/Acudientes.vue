@@ -3,14 +3,14 @@
                 <!-- Breadcrumb -->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Home</li>
-                    <li class="breadcrumb-item active">Residentes</li>
+                    <li class="breadcrumb-item active">Acudientes</li>
                 </ol>
                 <div class="container-fluid">
                     <!-- Ejemplo de tabla Listado -->
 
                     <div class="card">
                         <div class="card-header">
-                            <i class="fa fa-align-justify"></i> Residente &nbsp;
+                            <i class="fa fa-align-justify"></i> Acudiente &nbsp;
                             <button type="button" @click="abrirModal('residente','crear')" class="btn btn-secondary">
                                 <i class="icon-plus"></i>&nbsp;Nuevo
                             </button>
@@ -36,8 +36,8 @@
                                     <tr>
                                         <th>Opciones</th>
                                         <th>Documento</th>
-                                        <th>Nombre residente</th>
                                         <th>Nombre acudiente</th>
+                                        <th>Nombre residente</th>
                                         <th>Teléfono</th>
                                         <th>Estado</th>
                                     </tr>
@@ -72,8 +72,8 @@
 
                                         </td>
                                         <td v-text="residente.documentor"></td>
-                                        <td v-text="residente.residente"></td>
                                         <td v-text="residente.acudiente"></td>
+                                        <td v-text="residente.residente"></td>
                                         <td v-text="residente.telefono"></td>
                                         <td>
                                             <div v-if="residente.estado == 'A'">
